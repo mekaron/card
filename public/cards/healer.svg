@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="healer-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d3a32" />
+      <stop offset="100%" stop-color="#0c1d18" />
+    </linearGradient>
+    <radialGradient id="healer-light" cx="0.5" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#9bf5d6" stop-opacity="0.95" />
+      <stop offset="70%" stop-color="#61e6b0" stop-opacity="0.45" />
+      <stop offset="100%" stop-color="#61e6b0" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="400" height="560" fill="url(#healer-bg)" rx="28" />
+  <circle cx="200" cy="140" r="200" fill="url(#healer-light)" />
+  <path
+    d="M94 390c60-42 132-70 210-80-50 54-108 110-178 146-30 16-64 28-102 36 22-42 44-78 70-102z"
+    fill="#54d6a0"
+    opacity="0.55"
+  />
+  <path
+    d="M176 170l28-62 32 50 58-6-40 52 24 62-58-24-44 46 6-62-54-34 48-12z"
+    fill="#e6fff6"
+    opacity="0.6"
+  />
+  <path
+    d="M110 434c46-18 90-16 134 6-46 10-92 14-138 8l4-14z"
+    fill="#8cffd8"
+    opacity="0.6"
+  />
+  <text
+    x="40"
+    y="500"
+    font-family="'Trebuchet MS', 'Segoe UI', sans-serif"
+    font-size="48"
+    letter-spacing="4"
+    fill="#e9fff7"
+  >
+    HEALER
+  </text>
+</svg>

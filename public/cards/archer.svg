@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="archer-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f2a36" />
+      <stop offset="100%" stop-color="#0c141b" />
+    </linearGradient>
+    <radialGradient id="archer-glow" cx="0.7" cy="0.2" r="0.8">
+      <stop offset="0%" stop-color="#f2c572" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#f2c572" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="400" height="560" fill="url(#archer-bg)" rx="28" />
+  <circle cx="280" cy="120" r="160" fill="url(#archer-glow)" />
+  <path
+    d="M104 428c58-70 116-176 180-244-10 78-56 196-118 264-32 34-74 54-118 64 20-30 40-58 56-84z"
+    fill="#72d6f8"
+    opacity="0.45"
+  />
+  <path
+    d="M116 160c48-44 120-54 184-26-60-4-122 16-184 74l0-48z"
+    fill="#ffe9a0"
+    opacity="0.5"
+  />
+  <path
+    d="M110 214c22 8 36 24 50 44 14 20 30 40 54 58-42-10-86-38-124-84l20-18z"
+    fill="#ffe38f"
+    opacity="0.55"
+  />
+  <text
+    x="40"
+    y="500"
+    font-family="'Trebuchet MS', 'Segoe UI', sans-serif"
+    font-size="48"
+    letter-spacing="4"
+    fill="#f8f0dc"
+  >
+    ARCHER
+  </text>
+</svg>

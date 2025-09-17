@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="rogue-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d1f2f" />
+      <stop offset="100%" stop-color="#06070f" />
+    </linearGradient>
+    <radialGradient id="rogue-glow" cx="0.65" cy="0.25" r="0.8">
+      <stop offset="0%" stop-color="#7ff2ff" stop-opacity="0.9" />
+      <stop offset="70%" stop-color="#3dd6c7" stop-opacity="0.45" />
+      <stop offset="100%" stop-color="#3dd6c7" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="400" height="560" fill="url(#rogue-bg)" rx="28" />
+  <circle cx="280" cy="140" r="200" fill="url(#rogue-glow)" />
+  <path
+    d="M84 420c54-56 128-104 200-124-32 72-90 140-166 186-32 20-68 34-110 42 22-40 46-76 76-104z"
+    fill="#4fe0d2"
+    opacity="0.5"
+  />
+  <path
+    d="M168 176l-24-64 60 28 54-44-6 62 60 26-62 18-8 66-42-50-72 6 40-48z"
+    fill="#d9ffff"
+    opacity="0.55"
+  />
+  <path
+    d="M120 440c46-20 96-18 142 4-50 16-100 24-150 18l8-22z"
+    fill="#8efff5"
+    opacity="0.6"
+  />
+  <text
+    x="40"
+    y="500"
+    font-family="'Trebuchet MS', 'Segoe UI', sans-serif"
+    font-size="48"
+    letter-spacing="4"
+    fill="#e3fffe"
+  >
+    ROGUE
+  </text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="scout-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#223c4b" />
+      <stop offset="100%" stop-color="#0f1e27" />
+    </linearGradient>
+    <linearGradient id="scout-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6de39b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#4aa8ff" stop-opacity="0.2" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="560" fill="url(#scout-bg)" rx="28" />
+  <path
+    d="M48 428c28-86 102-162 172-192 60-26 122-14 132-92 6 96-28 198-86 264-52 58-132 94-218 98z"
+    fill="url(#scout-accent)"
+    opacity="0.72"
+  />
+  <path
+    d="M92 132c0 32 26 58 58 58s58-26 58-58-26-58-58-58-58 26-58 58zm58 26c-14 0-26-12-26-26s12-26 26-26 26 12 26 26-12 26-26 26z"
+    fill="#93ffd7"
+    opacity="0.45"
+  />
+  <path
+    d="M192 236c-52 28-94 82-116 140 42-46 110-84 178-84 26 0 52 4 78 14-28-48-84-84-140-70z"
+    fill="#1d2f38"
+    opacity="0.65"
+  />
+  <path
+    d="M126 362c38-32 86-40 126-16-34-6-74 6-110 42l-16-26z"
+    fill="#a4ffd5"
+    opacity="0.6"
+  />
+  <text
+    x="40"
+    y="500"
+    font-family="'Trebuchet MS', 'Segoe UI', sans-serif"
+    font-size="48"
+    letter-spacing="4"
+    fill="#cffff0"
+  >
+    SCOUT
+  </text>
+</svg>

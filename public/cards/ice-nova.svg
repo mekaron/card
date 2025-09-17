@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="ice-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#142c46" />
+      <stop offset="100%" stop-color="#060c16" />
+    </linearGradient>
+    <radialGradient id="ice-core" cx="0.5" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#9ad8ff" stop-opacity="1" />
+      <stop offset="60%" stop-color="#4aa8ff" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#4aa8ff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="400" height="560" fill="url(#ice-bg)" rx="28" />
+  <circle cx="200" cy="160" r="210" fill="url(#ice-core)" />
+  <path
+    d="M72 348c72-12 138-48 212-112-18 82-58 158-120 212-38 34-84 56-138 68 16-60 28-112 46-168z"
+    fill="#7cc8ff"
+    opacity="0.55"
+  />
+  <path
+    d="M210 170l32-78 40 70 72-12-48 66 42 62-76-16-40 62-10-76-78-22 66-26z"
+    fill="#f0f8ff"
+    opacity="0.6"
+  />
+  <path
+    d="M126 436c52-22 110-26 166-8-60 24-118 34-176 28l10-20z"
+    fill="#c1ecff"
+    opacity="0.65"
+  />
+  <text
+    x="40"
+    y="500"
+    font-family="'Trebuchet MS', 'Segoe UI', sans-serif"
+    font-size="48"
+    letter-spacing="4"
+    fill="#e4f4ff"
+  >
+    ICE NOVA
+  </text>
+</svg>

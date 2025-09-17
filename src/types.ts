@@ -5,6 +5,7 @@ export interface Card {
   id: string;
   label: string;
   type: CardType;
+  image: string;
 }
 
 export type ZoneState = Record<ZoneId, string[]>;

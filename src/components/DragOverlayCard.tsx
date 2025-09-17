@@ -11,8 +11,11 @@ export default function DragOverlayCard({ card }: DragOverlayCardProps) {
 
   return (
     <div className={`card ${card.type} overlay`} aria-hidden="true">
-      <span className="typeBadge">{card.type}</span>
-      <div className="cardLabel">{card.label}</div>
+      <img src={card.image} alt="" className="cardArt" draggable={false} />
+      <div className="cardContent">
+        <span className="typeBadge">{card.type}</span>
+        <div className="cardLabel">{card.label}</div>
+      </div>
     </div>
   );
 }
