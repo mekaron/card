@@ -181,9 +181,10 @@ button.danger {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
   grid-auto-rows: 120px;
   gap: var(--gap);
+  justify-content: flex-start;
 }
 
 .card {
@@ -194,6 +195,11 @@ button.danger {
   border-radius: 12px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   overflow: hidden;
+}
+
+.card--grid {
+  width: 100px;
+  min-width: 100px;
 }
 
 .cardArt {

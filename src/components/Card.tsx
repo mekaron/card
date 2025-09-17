@@ -25,9 +25,15 @@ interface CardProps {
   card: CardT;
   selected?: boolean;
   onSelect?: (cardId: string) => void;
+  size?: 'default' | 'grid';
 }
 
-export default function Card({ card, selected = false, onSelect }: CardProps) {
+export default function Card({
+  card,
+  selected = false,
+  onSelect,
+  size = 'default',
+}: CardProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: card.id });
 
@@ -129,11 +135,16 @@ export default function Card({ card, selected = false, onSelect }: CardProps) {
     <div
       ref={setNodeRef}
       style={style}
-      className={clsx('card', card.type, {
-        dragging: isDragging,
-        selected,
-        selectable: Boolean(onSelect),
-      })}
+      className={clsx(
+        'card',
+        card.type,
+        {
+          dragging: isDragging,
+          selected,
+          selectable: Boolean(onSelect),
+        },
+        size === 'grid' && 'card--grid',
+      )}
       aria-label={`${card.label}, ${card.type}`}
       {...attributes}
       {...listeners}

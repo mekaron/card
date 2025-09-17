@@ -71,6 +71,7 @@ export default function App() {
 
   const [activeId, setActiveId] = React.useState<Id | null>(null);
   const [selectedCardId, setSelectedCardId] = React.useState<string | null>(null);
+  const [activeCardOrigin, setActiveCardOrigin] = React.useState<ZoneId | null>(null);
   const [hint, setHint] = React.useState<Record<ZoneId, 'accepts' | 'rejects' | null>>({
     hand: null,
     board: null,
@@ -143,10 +144,12 @@ export default function App() {
     (event: DragStartEvent) => {
       const { active } = event;
       setActiveId(active.id as string);
+      const origin = findContainer(containers, active.id as string);
+      setActiveCardOrigin(origin ?? null);
       vibrate(10);
       announce(`Picked up ${cardsById[active.id as string].label}`);
     },
-    [cardsById],
+    [cardsById, containers],
   );
 
   const onDragOver = React.useCallback(
@@ -195,6 +198,7 @@ export default function App() {
       const { active, over } = event;
       const id = active.id as string;
       setHint({ hand: null, board: null, discard: null });
+      setActiveCardOrigin(null);
 
       if (!over) {
         setActiveId(null);
@@ -231,6 +235,7 @@ export default function App() {
     setActiveId(null);
     state.replace(state.baseline);
     announce('Cancelled');
+    setActiveCardOrigin(null);
   }, [state]);
 
   return (
@@ -295,7 +300,7 @@ export default function App() {
                 <SortableContext items={containers.board} strategy={rectSortingStrategy}>
                   <div className="grid">
                     {containers.board.map((id) => (
-                      <Card key={id} card={cardsById[id]} />
+                      <Card key={id} card={cardsById[id]} size="grid" />
                     ))}
                   </div>
                 </SortableContext>
@@ -322,7 +327,12 @@ export default function App() {
           </div>
 
           <DragOverlay dropAnimation={{ duration: 130 }}>
-            {activeCard ? <DragOverlayCard card={activeCard} /> : null}
+            {activeCard ? (
+              <DragOverlayCard
+                card={activeCard}
+                size={activeCardOrigin === 'board' ? 'grid' : 'default'}
+              />
+            ) : null}
           </DragOverlay>
         </DndContext>
       </div>
