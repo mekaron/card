@@ -17,6 +17,12 @@ npm install
 npm run dev
 ```
 
+## Deployment
+
+The project includes a `netlify.toml` configuration so Netlify can build and
+serve the app as a single-page application. Deploys should use Node 18, run
+`npm run build`, and publish the `dist/` directory.
+
 ## Key files
 
 - `src/state/useHistoryState.ts` — baselined history with `setEphemeral`, `commit`, `undo`, `redo`.
