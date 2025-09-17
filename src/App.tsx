@@ -3,7 +3,8 @@ import {
   DndContext,
   DragOverlay,
   KeyboardSensor,
-  PointerSensor,
+  MouseSensor,
+  TouchSensor,
   closestCenter,
   type DragEndEvent,
   type DragOverEvent,
@@ -20,6 +21,7 @@ import {
 
 import Zone from './components/Zone';
 import Card from './components/Card';
+import CardDetailsPanel from './components/CardDetailsPanel';
 import DragOverlayCard from './components/DragOverlayCard';
 import A11yLiveRegion from './components/A11yLiveRegion';
 import { useEdgeAutoScroll } from './dnd/useEdgeAutoScroll';
@@ -68,6 +70,7 @@ export default function App() {
   const containers = state.present;
 
   const [activeId, setActiveId] = React.useState<Id | null>(null);
+  const [selectedCardId, setSelectedCardId] = React.useState<string | null>(null);
   const [hint, setHint] = React.useState<Record<ZoneId, 'accepts' | 'rejects' | null>>({
     hand: null,
     board: null,
@@ -75,7 +78,8 @@ export default function App() {
   });
 
   const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { delay: 180, tolerance: 6 } }),
+    useSensor(MouseSensor),
+    useSensor(TouchSensor, { activationConstraint: { delay: 180, tolerance: 6 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   );
 
@@ -83,6 +87,33 @@ export default function App() {
   const { register } = useEdgeAutoScroll(isDragging, { edge: 32, maxSpeed: 600 });
 
   const activeCard = activeId ? cardsById[activeId] : null;
+  const selectedCard = selectedCardId ? cardsById[selectedCardId] : null;
+
+  React.useEffect(() => {
+    if (selectedCardId && !containers.hand.includes(selectedCardId)) {
+      setSelectedCardId(null);
+    }
+  }, [containers.hand, selectedCardId]);
+
+  const handleSelectCard = React.useCallback(
+    (cardId: string) => {
+      setSelectedCardId((current) => {
+        if (!containers.hand.includes(cardId)) {
+          return current;
+        }
+
+        const next = current === cardId ? null : cardId;
+        const card = cardsById[cardId];
+        if (next) {
+          announce(`${card.label} selected`);
+        } else {
+          announce(`${card.label} deselected`);
+        }
+        return next;
+      });
+    },
+    [cardsById, containers.hand],
+  );
 
   const registerZoneRef = React.useCallback(
     (zone: ZoneId, el: HTMLElement | null) => {
@@ -231,54 +262,63 @@ export default function App() {
           onDragEnd={onDragEnd}
           onDragCancel={onDragCancel}
         >
-          <div className="zones">
-            <Zone
-              id="hand"
-              title="Hand"
-              accepts={['unit', 'spell']}
-              onRef={(el) => registerZoneRef('hand', el)}
-              hint={hint.hand}
-            >
-              <SortableContext items={containers.hand} strategy={verticalListSortingStrategy}>
-                <div className="list">
-                  {containers.hand.map((id) => (
-                    <Card key={id} card={cardsById[id]} />
-                  ))}
-                </div>
-              </SortableContext>
-            </Zone>
+          <div className="workspace">
+            <div className="zones">
+              <Zone
+                id="hand"
+                title="Hand"
+                accepts={['unit', 'spell']}
+                onRef={(el) => registerZoneRef('hand', el)}
+                hint={hint.hand}
+              >
+                <SortableContext items={containers.hand} strategy={verticalListSortingStrategy}>
+                  <div className="list">
+                    {containers.hand.map((id) => (
+                      <Card
+                        key={id}
+                        card={cardsById[id]}
+                        selected={selectedCardId === id}
+                        onSelect={handleSelectCard}
+                      />
+                    ))}
+                  </div>
+                </SortableContext>
+              </Zone>
 
-            <Zone
-              id="board"
-              title="Board"
-              accepts={['unit']}
-              onRef={(el) => registerZoneRef('board', el)}
-              hint={hint.board}
-            >
-              <SortableContext items={containers.board} strategy={rectSortingStrategy}>
-                <div className="grid">
-                  {containers.board.map((id) => (
-                    <Card key={id} card={cardsById[id]} />
-                  ))}
-                </div>
-              </SortableContext>
-            </Zone>
+              <Zone
+                id="board"
+                title="Board"
+                accepts={['unit']}
+                onRef={(el) => registerZoneRef('board', el)}
+                hint={hint.board}
+              >
+                <SortableContext items={containers.board} strategy={rectSortingStrategy}>
+                  <div className="grid">
+                    {containers.board.map((id) => (
+                      <Card key={id} card={cardsById[id]} />
+                    ))}
+                  </div>
+                </SortableContext>
+              </Zone>
 
-            <Zone
-              id="discard"
-              title="Discard"
-              accepts={['unit', 'spell']}
-              onRef={(el) => registerZoneRef('discard', el)}
-              hint={hint.discard}
-            >
-              <SortableContext items={containers.discard} strategy={verticalListSortingStrategy}>
-                <div className="list">
-                  {containers.discard.map((id) => (
-                    <Card key={id} card={cardsById[id]} />
-                  ))}
-                </div>
-              </SortableContext>
-            </Zone>
+              <Zone
+                id="discard"
+                title="Discard"
+                accepts={['unit', 'spell']}
+                onRef={(el) => registerZoneRef('discard', el)}
+                hint={hint.discard}
+              >
+                <SortableContext items={containers.discard} strategy={verticalListSortingStrategy}>
+                  <div className="list">
+                    {containers.discard.map((id) => (
+                      <Card key={id} card={cardsById[id]} />
+                    ))}
+                  </div>
+                </SortableContext>
+              </Zone>
+            </div>
+
+            <CardDetailsPanel card={selectedCard} />
           </div>
 
           <DragOverlay dropAnimation={{ duration: 130 }}>
